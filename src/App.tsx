@@ -1,11 +1,29 @@
 import viasanoLogoColorPng from './assets/viasano_logo_color.png'
 import viasanoLogoPng from './assets/viasano_logo.png'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 
 const WHATSAPP_DEFAULT_MESSAGE =
   'Hola, quiero consultar por ViaSano, vengo de la pagina web'
 const WHATSAPP_URL = `https://wa.me/5491151229168?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`
 
 function App() {
+  const [age, setAge] = useState<string>('')
+  const [workStatus, setWorkStatus] = useState<string>('')
+
+  const parsedAge = Number(age)
+  const hasValidAge = age !== '' && Number.isFinite(parsedAge)
+  const isOverAgeLimit = hasValidAge && parsedAge > 68
+  const isNotRegisteredWorker = workStatus === 'no'
+  const isIneligible = isOverAgeLimit || isNotRegisteredWorker
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    if (isIneligible) {
+      event.preventDefault()
+      return
+    }
+  }
+
   return (
     <main className="landing">
       <div className="top-logo">
@@ -30,22 +48,51 @@ function App() {
           <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
           <p className="muted">Completa y un asesor te contactara en minutos.</p>
 
-          <form className="lead-form">
-            <label htmlFor="fullName">Nombre completo</label>
+          <form className="lead-form" onSubmit={handleFormSubmit}>
             <input id="fullName" name="fullName" type="text" placeholder="Tu nombre y apellido" />
 
-            <label htmlFor="whatsapp">WhatsApp (Ej: 1122334455)</label>
             <input id="whatsapp" name="whatsapp" type="tel" placeholder="11XXXXXXXX" />
 
-            <label htmlFor="email">Tu Correo Electronico (Opcional)</label>
             <input id="email" name="email" type="email" placeholder="correo@ejemplo.com" />
+
+            <input
+              id="age"
+              name="age"
+              type="number"
+              min="0"
+              max="120"
+              placeholder="Tu edad"
+              value={age}
+              onChange={(event) => setAge(event.target.value)}
+              required
+            />
+
+            <select
+              id="workStatus"
+              name="workStatus"
+              value={workStatus}
+              onChange={(event) => setWorkStatus(event.target.value)}
+              required
+            >
+              <option value="">Selecciona una opcion</option>
+              <option value="si">Si</option>
+              <option value="no">No</option>
+            </select>
+
+            {isIneligible ? (
+              <p className="form-error-message" role="alert">
+                No puedes enviar el formulario porque no cumples con los requisitos.
+              </p>
+            ) : null}
 
             <label className="checkbox-row">
               <input type="checkbox" name="humanCheck" />
               <span>No soy un robot</span>
             </label>
 
-            <button type="submit">SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO</button>
+            <button type="submit" disabled={isIneligible}>
+              SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO
+            </button>
           </form>
         </article>
 

@@ -32,9 +32,9 @@ function App() {
 
       <section className="hero-section">
         <p className="pill">Cobertura Nacional Certificada</p>
-        <h1>TU SALUD SIN COSTOS EXTRA</h1>
+        <h1>Obra Social Sin Copagos: Cobertura Medica Completa Con Tus Aportes</h1>
         <p className="hero-subtitle">
-          Cobertura medica completa <strong>SOLO CON TUS APORTES</strong>
+          Cambia tu cobertura de salud y accede a un plan medico integral <strong>solo con tus aportes</strong>.
         </p>
         <p className="hero-warning">⚠️ Sin Bonos | Sin Copagos | Sin Sorpresas</p>
         <p className="hero-disclaimer">
@@ -44,9 +44,9 @@ function App() {
 
       <section className="form-and-benefits">
         <article className="lead-form-card">
-          <h2>¿Queres saber cuanto vas a ahorrar?</h2>
+          <h2>Cotiza Tu Plan De Salud En Minutos</h2>
           <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
-          <p className="muted">Completa y un asesor te contactara en minutos.</p>
+          <p className="muted">Completa el formulario y un asesor te contactara para ayudarte a elegir tu cobertura medica ideal.</p>
 
           <form className="lead-form" onSubmit={handleFormSubmit}>
             <input id="fullName" name="fullName" type="text" placeholder="Tu nombre y apellido" />
@@ -99,15 +99,15 @@ function App() {
         <aside className="benefits-grid">
           <article className="benefit-card">
             <h3>🏥 +50 Sanatorios</h3>
-            <p>Acceso a cartilla de primer nivel en toda la zona.</p>
+            <p>Accede a una cartilla medica de primer nivel con cobertura en AMBA y todo el pais.</p>
           </article>
           <article className="benefit-card">
             <h3>🚑 Emergencias 24hs</h3>
-            <p>Atencion medica domiciliaria los 365 dias del ano.</p>
+            <p>Servicio de emergencias y atencion medica domiciliaria durante todo el ano.</p>
           </article>
           <article className="benefit-card">
             <h3>🦷 Odontologia</h3>
-            <p>Cobertura integral para vos y tu familia.</p>
+            <p>Cobertura odontologica para vos y tu grupo familiar.</p>
           </article>
         </aside>
       </section>
@@ -115,7 +115,7 @@ function App() {
       <section className="featured-plan">
         <p className="plan-badge">PLAN DESTACADO: 411 SUPERADOR</p>
         <h2>$0 COPAGOS</h2>
-        <p className="muted">Uso exclusivo con recibo de sueldo</p>
+        <p className="muted">Plan medico para trabajadores en relacion de dependencia con recibo de sueldo.</p>
         <ul>
           <li>Internacion programada al 100%</li>
           <li>17 Policonsultorios propios de atencion inmediata</li>
@@ -126,12 +126,12 @@ function App() {
       </section>
 
       <section className="infrastructure">
-        <h2>Conoce nuestra infraestructura</h2>
-        <p className="muted">Instalaciones modernas y equipos medicos de ultima generacion.</p>
+        <h2>Red Medica E Infraestructura De Alta Calidad</h2>
+        <p className="muted">Contamos con centros de atencion modernos y profesionales para una cobertura de salud confiable.</p>
       </section>
 
       <section className="testimonials">
-        <h2>Lo que dicen nuestros afiliados</h2>
+        <h2>Opiniones Reales De Afiliados</h2>
         <div className="testimonials-grid">
           <article className="testimonial-card">
             <p className="stars">★★★★★</p>

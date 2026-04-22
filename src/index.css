@@ -1,0 +1,398 @@
+:root {
+  --vs-burgundy: #7a1539;
+  --vs-burgundy-dark: #5f102d;
+  --vs-yellow: #f3bf3a;
+  --vs-yellow-soft: #fff3cd;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background: #fefbf5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(243, 191, 58, 0.3) 0%, transparent 30%),
+    radial-gradient(circle at 92% 8%, rgba(122, 21, 57, 0.2) 0%, transparent 38%),
+    radial-gradient(circle at 75% 80%, rgba(251, 191, 36, 0.14) 0%, transparent 42%),
+    #fefbf5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.landing {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.top-logo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.top-logo img {
+  width: 150px;
+  max-width: 45vw;
+  height: auto;
+  display: block;
+}
+
+.hero-section,
+.lead-form-card,
+.benefit-card,
+.featured-plan,
+.infrastructure,
+.testimonial-card,
+.footer {
+  background: #ffffff;
+  border: 1px solid #f2e8d9;
+  border-radius: 1rem;
+  box-shadow: 0 16px 34px -24px rgba(58, 22, 36, 0.45);
+}
+
+.hero-section {
+  background:
+    linear-gradient(150deg, rgba(122, 21, 57, 0.05), rgba(243, 191, 58, 0.05)),
+    #ffffff;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(122, 21, 57, 0.2);
+}
+
+.pill {
+  width: fit-content;
+  margin: 0 auto 0.75rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vs-burgundy-dark);
+  background: var(--vs-yellow-soft);
+  border: 1px solid rgba(243, 191, 58, 0.7);
+}
+
+h1 {
+  margin: 0.25rem 0;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  margin-top: 0.75rem;
+}
+
+.hero-warning {
+  margin-top: 0.85rem;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+.hero-disclaimer {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+.form-and-benefits {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1rem;
+}
+
+.lead-form-card {
+  padding: 1.5rem;
+}
+
+.muted {
+  color: #475569;
+  margin-top: 0.35rem;
+}
+
+.form-highlight {
+  margin-top: 0.5rem;
+  color: var(--vs-burgundy);
+  font-weight: 800;
+}
+
+.lead-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.lead-form label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.lead-form input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lead-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+.checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.checkbox-row input {
+  width: auto;
+}
+
+button {
+  margin-top: 0.45rem;
+  border: none;
+  border-radius: 0.8rem;
+  background: linear-gradient(120deg, var(--vs-yellow), var(--vs-burgundy));
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 20px -14px rgba(122, 21, 57, 0.8);
+}
+
+.benefits-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.benefit-card {
+  padding: 1.35rem;
+  border-top: 4px solid var(--vs-burgundy);
+}
+
+.benefit-card:nth-child(2) {
+  border-top-color: var(--vs-yellow);
+}
+
+.benefit-card:nth-child(3) {
+  border-top-color: #ca8a04;
+}
+
+.benefit-card p {
+  margin-top: 0.35rem;
+  color: #475569;
+}
+
+.featured-plan {
+  padding: 1.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-plan h2 {
+  margin-top: 0.5rem;
+}
+
+.featured-plan .muted {
+  max-width: 28rem;
+}
+
+.plan-badge {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: var(--vs-yellow-soft);
+  color: var(--vs-burgundy);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid rgba(243, 191, 58, 0.7);
+}
+
+.featured-plan ul {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style-position: inside;
+  color: #1e293b;
+  display: grid;
+  gap: 0.45rem;
+  justify-items: center;
+  text-align: center;
+  max-width: 36rem;
+}
+
+.featured-plan button {
+  align-self: center;
+}
+
+.infrastructure {
+  background:
+    linear-gradient(180deg, rgba(243, 191, 58, 0.1), rgba(122, 21, 57, 0.08)),
+    #ffffff;
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.testimonials {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.testimonials > h2 {
+  padding: 0 0.25rem;
+  color: var(--vs-burgundy);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.testimonial-card {
+  padding: 1.4rem;
+}
+
+.stars {
+  color: var(--vs-yellow);
+  font-size: 1.1rem;
+}
+
+.author {
+  margin-top: 0.7rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.footer {
+  background: linear-gradient(140deg, var(--vs-burgundy-dark), var(--vs-burgundy));
+  border-color: rgba(122, 21, 57, 0.8);
+  text-align: center;
+  padding: 1.4rem;
+}
+
+.footer-logo {
+  display: block;
+  width: min(280px, 80%);
+  height: auto;
+  margin: 0 auto 0.7rem;
+}
+
+.footer p {
+  color: #fff7ed;
+}
+
+.whatsapp-float {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: #ffffff;
+  background: linear-gradient(120deg, #22c55e, #16a34a);
+  box-shadow:
+    0 12px 20px -14px rgba(22, 163, 74, 0.9),
+    0 10px 30px -15px rgba(15, 23, 42, 0.6);
+  z-index: 1000;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.03);
+}
+
+.whatsapp-float__icon {
+  width: 2.125rem;
+  height: 2.125rem;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .landing {
+    padding-top: 1.25rem;
+  }
+
+  .top-logo img {
+    width: 128px;
+  }
+
+  .form-and-benefits,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section,
+  .lead-form-card,
+  .featured-plan,
+  .infrastructure,
+  .testimonial-card,
+  .footer {
+    padding: 1.2rem;
+  }
+
+  .whatsapp-float {
+    right: 0.9rem;
+    bottom: 0.9rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .whatsapp-float__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

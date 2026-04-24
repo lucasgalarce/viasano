@@ -7,7 +7,8 @@ import type { FormEvent } from "react";
 const WHATSAPP_DEFAULT_MESSAGE =
   "Hola, quiero consultar por ViaSano, vengo de la pagina web";
 const WHATSAPP_URL = `https://wa.me/5491151229168?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
-const FORM_SUBMIT_URL = "https://formsubmit.co/Joaquin.arrabasa@gmail.com";
+const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/Joaquin.arrabasa@gmail.com";
+// const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/ratzot.consta@gmail.com";
 
 function App() {
   const [age, setAge] = useState<string>("");
@@ -27,22 +28,49 @@ function App() {
     event.preventDefault();
 
     if (isIneligible) {
+      console.warn("[FormDebug] Submit bloqueado por elegibilidad", {
+        age,
+        workStatus,
+      });
       return;
     }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const payloadPreview: Record<string, FormDataEntryValue> = {};
+    formData.forEach((value, key) => {
+      payloadPreview[key] = value;
+    });
 
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
     try {
+      console.log("[FormDebug] Iniciando envio", {
+        endpoint: FORM_SUBMIT_URL,
+        payloadPreview,
+      });
+
       const response = await fetch(FORM_SUBMIT_URL, {
         method: "POST",
         body: formData,
         headers: {
           Accept: "application/json",
         },
+      });
+
+      let responseBody: unknown = null;
+      try {
+        responseBody = await response.clone().json();
+      } catch {
+        responseBody = await response.text();
+      }
+
+      console.log("[FormDebug] Respuesta FormSubmit", {
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
       });
 
       if (!response.ok) {
@@ -53,10 +81,13 @@ function App() {
       setAge("");
       setWorkStatus("");
       setSubmitStatus("success");
+      console.log("[FormDebug] Envio exitoso");
     } catch {
+      console.error("[FormDebug] Error en envio");
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
+      console.log("[FormDebug] Fin de submit");
     }
   };
 
@@ -105,6 +136,7 @@ function App() {
             onSubmit={handleFormSubmit}
           >
             <input type="hidden" name="_subject" value="Nuevo lead - ViaSano" />
+            <input type="hidden" name="_captcha" value="false" />
             <input
               type="hidden"
               name="_autoresponse"
@@ -123,6 +155,7 @@ function App() {
               name="fullName"
               type="text"
               placeholder="Tu nombre y apellido"
+              required
             />
 
             <input
@@ -132,19 +165,18 @@ function App() {
               inputMode="numeric"
               pattern="[0-9]+"
               placeholder="11XXXXXXXX"
+              required
               onInput={(event) => {
                 const input = event.currentTarget;
                 input.value = input.value.replace(/\D/g, "");
               }}
             />
-
             <input
               id="email"
               name="email"
               type="email"
               placeholder="correo@ejemplo.com"
             />
-
             <input
               id="age"
               name="age"
@@ -156,7 +188,6 @@ function App() {
               onChange={(event) => setAge(event.target.value)}
               required
             />
-
             <select
               id="workStatus"
               name="workStatus"
@@ -168,7 +199,6 @@ function App() {
               <option value="si">Si</option>
               <option value="no">No</option>
             </select>
-
             {isIneligible ? (
               <p className="form-error-message" role="alert">
                 No puedes enviar el formulario porque no cumples con los
@@ -191,7 +221,7 @@ function App() {
               <span>No soy un robot</span>
             </label>
 
-            <button type="submit" disabled={isIneligible || isSubmitting}>
+            <button type="submit" disabled={isSubmitting || isIneligible}>
               {isSubmitting
                 ? "ENVIANDO..."
                 : "SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO"}

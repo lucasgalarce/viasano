@@ -1,5 +1,6 @@
 import viasanoLogoColorPng from './assets/viasano_logo_color.png'
 import viasanoLogoPng from './assets/viasano_logo.png'
+import saludBackgroundJpg from './assets/salud.jpg'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 
@@ -31,6 +32,7 @@ function App() {
       </div>
 
       <section className="hero-section">
+        <img className="hero-background-image" src={saludBackgroundJpg} alt="" aria-hidden="true" />
         <p className="pill">Cobertura Nacional Certificada</p>
         <h1>Obra Social Sin Copagos: Cobertura Medica Completa Con Tus Aportes</h1>
         <p className="hero-subtitle">

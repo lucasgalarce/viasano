@@ -7,10 +7,13 @@ import type { FormEvent } from 'react'
 const WHATSAPP_DEFAULT_MESSAGE =
   'Hola, quiero consultar por ViaSano, vengo de la pagina web'
 const WHATSAPP_URL = `https://wa.me/5491151229168?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`
+const FORM_SUBMIT_URL = 'https://formsubmit.co/Joaquin.arrabasa@gmail.com'
 
 function App() {
   const [age, setAge] = useState<string>('')
   const [workStatus, setWorkStatus] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const parsedAge = Number(age)
   const hasValidAge = age !== '' && Number.isFinite(parsedAge)
@@ -18,10 +21,40 @@ function App() {
   const isNotRegisteredWorker = workStatus === 'no'
   const isIneligible = isOverAgeLimit || isNotRegisteredWorker
 
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
     if (isIneligible) {
-      event.preventDefault()
       return
+    }
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch(FORM_SUBMIT_URL, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error('Form submit failed')
+      }
+
+      form.reset()
+      setAge('')
+      setWorkStatus('')
+      setSubmitStatus('success')
+    } catch {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -50,10 +83,34 @@ function App() {
           <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
           <p className="muted">Completa el formulario y un asesor te contactara para ayudarte a elegir tu cobertura medica ideal.</p>
 
-          <form className="lead-form" onSubmit={handleFormSubmit}>
+          <form
+            className="lead-form"
+            action={FORM_SUBMIT_URL}
+            method="POST"
+            onSubmit={handleFormSubmit}
+          >
+            <input type="hidden" name="_subject" value="Nuevo lead - ViaSano" />
+            <input
+              type="hidden"
+              name="_autoresponse"
+              value="Recibimos tu consulta. Un asesor de ViaSano te contactara en breve."
+            />
+            <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
             <input id="fullName" name="fullName" type="text" placeholder="Tu nombre y apellido" />
 
-            <input id="whatsapp" name="whatsapp" type="tel" placeholder="11XXXXXXXX" />
+            <input
+              id="whatsapp"
+              name="whatsapp"
+              type="tel"
+              inputMode="numeric"
+              pattern="[0-9]+"
+              placeholder="11XXXXXXXX"
+              onInput={(event) => {
+                const input = event.currentTarget
+                input.value = input.value.replace(/\D/g, '')
+              }}
+            />
 
             <input id="email" name="email" type="email" placeholder="correo@ejemplo.com" />
 
@@ -86,14 +143,26 @@ function App() {
                 No puedes enviar el formulario porque no cumples con los requisitos.
               </p>
             ) : null}
+            {submitStatus === 'success' ? (
+              <p className="form-success-message" role="status">
+                Consulta enviada correctamente. Te contactaremos en breve.
+              </p>
+            ) : null}
+            {submitStatus === 'error' ? (
+              <p className="form-error-message" role="alert">
+                Ocurrio un error al enviar el formulario. Intenta nuevamente.
+              </p>
+            ) : null}
 
             <label className="checkbox-row">
-              <input type="checkbox" name="humanCheck" />
+              <input type="checkbox" name="humanCheck" required />
               <span>No soy un robot</span>
             </label>
 
-            <button type="submit" disabled={isIneligible}>
-              SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO
+            <button type="submit" disabled={isIneligible || isSubmitting}>
+              {isSubmitting
+                ? 'ENVIANDO...'
+                : 'SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO'}
             </button>
           </form>
         </article>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://viasano-production.up.railway.app/sitemap.xml
+Sitemap: https://tuobrasocial.ar/sitemap.xml

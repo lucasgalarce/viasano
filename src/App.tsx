@@ -4,6 +4,12 @@ import saludBackgroundJpg from "./assets/salud.jpg";
 import { useState } from "react";
 import type { FormEvent } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const WHATSAPP_DEFAULT_MESSAGE =
   "Hola, quiero consultar por ViaSano, vengo de la pagina web";
 const WHATSAPP_URL = `https://wa.me/5491151229168?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
@@ -81,6 +87,7 @@ function App() {
       setAge("");
       setWorkStatus("");
       setSubmitStatus("success");
+      window.gtag?.("event", "generate_lead", { method: "formsubmit" });
       console.log("[FormDebug] Envio exitoso");
     } catch {
       console.error("[FormDebug] Error en envio");
@@ -264,7 +271,17 @@ function App() {
           <li>Demanda espontanea pediatrica y clinica</li>
           <li>Descuentos en farmacias de toda la red</li>
         </ul>
-        <button type="button">¡QUIERO ESTE PLAN!</button>
+        <button
+          type="button"
+          onClick={() => {
+            window.gtag?.("event", "contact_whatsapp_click", {
+              method: "featured_plan_button",
+            });
+            window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
+          }}
+        >
+          ¡QUIERO ESTE PLAN!
+        </button>
       </section>
 
       <section className="infrastructure">
@@ -308,6 +325,11 @@ function App() {
         target="_blank"
         rel="noreferrer"
         aria-label="Contactar por WhatsApp"
+        onClick={() => {
+          window.gtag?.("event", "contact_whatsapp_click", {
+            method: "whatsapp_float",
+          });
+        }}
       >
         <svg
           className="whatsapp-float__icon"

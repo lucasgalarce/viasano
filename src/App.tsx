@@ -298,18 +298,18 @@ function App() {
           <article className="testimonial-card">
             <p className="stars">★★★★★</p>
             <p>
-              &quot;Increible no pagar de mas cada vez que voy al medico. El
-              ahorro se siente.&quot;
+              &quot;Me ayudaron a cambiarme rapido y sin vueltas. Hoy tengo mejor
+              cartilla medica y sigo usando mis aportes.&quot;
             </p>
-            <p className="author">- Carlos R.</p>
+            <p className="author">- Mariana G.</p>
           </article>
           <article className="testimonial-card">
             <p className="stars">★★★★★</p>
             <p>
-              &quot;Los policonsultorios estan impecables y la atencion es super
-              rapida.&quot;
+              &quot;La atencion fue clara desde el primer contacto. En pocos dias
+              ya tenia todo gestionado y sin costos de tramite.&quot;
             </p>
-            <p className="author">- Ana M.</p>
+            <p className="author">- Diego P.</p>
           </article>
         </div>
       </section>

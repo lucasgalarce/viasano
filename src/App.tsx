@@ -18,7 +18,6 @@ const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/Joaquin.arrabasa@gmail.com";
 
 function App() {
   const [age, setAge] = useState<string>("");
-  const [workStatus, setWorkStatus] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
@@ -26,9 +25,8 @@ function App() {
 
   const parsedAge = Number(age);
   const hasValidAge = age !== "" && Number.isFinite(parsedAge);
-  const isOverAgeLimit = hasValidAge && parsedAge > 68;
-  const isNotRegisteredWorker = workStatus === "no";
-  const isIneligible = isOverAgeLimit || isNotRegisteredWorker;
+  const isOverAgeLimit = hasValidAge && parsedAge > 58;
+  const isIneligible = isOverAgeLimit;
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,7 +34,6 @@ function App() {
     if (isIneligible) {
       console.warn("[FormDebug] Submit bloqueado por elegibilidad", {
         age,
-        workStatus,
       });
       return;
     }
@@ -85,7 +82,6 @@ function App() {
 
       form.reset();
       setAge("");
-      setWorkStatus("");
       setSubmitStatus("success");
       window.gtag?.("event", "generate_lead", { method: "formsubmit" });
       console.log("[FormDebug] Envio exitoso");
@@ -182,7 +178,7 @@ function App() {
               id="email"
               name="email"
               type="email"
-              placeholder="correo@ejemplo.com"
+              placeholder="correo@ejemplo.com (opcional)"
             />
             <input
               id="age"
@@ -195,17 +191,6 @@ function App() {
               onChange={(event) => setAge(event.target.value)}
               required
             />
-            <select
-              id="workStatus"
-              name="workStatus"
-              value={workStatus}
-              onChange={(event) => setWorkStatus(event.target.value)}
-              required
-            >
-              <option value="">Selecciona una opcion</option>
-              <option value="si">Si</option>
-              <option value="no">No</option>
-            </select>
             {isIneligible ? (
               <p className="form-error-message" role="alert">
                 No puedes enviar el formulario porque no cumples con los
@@ -222,11 +207,6 @@ function App() {
                 Ocurrio un error al enviar el formulario. Intenta nuevamente.
               </p>
             ) : null}
-
-            <label className="checkbox-row">
-              <input type="checkbox" name="humanCheck" required />
-              <span>No soy un robot</span>
-            </label>
 
             <button type="submit" disabled={isSubmitting || isIneligible}>
               {isSubmitting

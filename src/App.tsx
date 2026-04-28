@@ -314,6 +314,44 @@ function App() {
         </div>
       </section>
 
+      <section className="faq-section">
+        <h2>Preguntas Frecuentes</h2>
+        <article className="faq-item">
+          <h3>¿Puedo afiliarme solo con mis aportes?</h3>
+          <p>
+            Si, la cobertura es 100% con tu recibo de sueldo sin abonar ningún
+            tipo de diferencial
+          </p>
+        </article>
+        <article className="faq-item">
+          <h3>¿En cuanto tiempo me contactan?</h3>
+          <p>
+            Luego de enviar el formulario, un asesor se contacta normalmente en
+            pocos minutos.
+          </p>
+        </article>
+        <article className="faq-item">
+          <h3>¿El tramite tiene costo?</h3>
+          <p>
+            No. El tramite de afiliacion y el asesoramiento son 100% gratuitos.
+          </p>
+        </article>
+        <article className="faq-item">
+          <h3>¿Trabajan en todo el pais?</h3>
+          <p>
+            Si, contamos con cobertura nacional y evaluamos cartilla segun tu
+            zona para que tengas acceso real a prestadores.
+          </p>
+        </article>
+        <article className="faq-item">
+          <h3>¿Que requisitos de edad y situacion laboral aplican?</h3>
+          <p>
+            En esta propuesta aplican perfiles que trabajan en blanco y hasta 58
+            anos de edad.
+          </p>
+        </article>
+      </section>
+
       <footer className="footer">
         <img className="footer-logo" src={viasanoLogoPng} alt="Logo ViaSano" />
         <p>© 2026 ViaSano Salud. Cobertura nacional certificada.</p>

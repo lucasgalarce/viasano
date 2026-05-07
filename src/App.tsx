@@ -96,6 +96,7 @@ function App() {
       setAge("");
       setSubmitStatus("success");
       trackGaEvent("generate_lead", { method: "formsubmit" });
+      trackGaEvent("conversion_event_contact_4", { source: "form_submit" });
       console.log("[FormDebug] Envio exitoso");
     } catch {
       console.error("[FormDebug] Error en envio");
@@ -270,6 +271,9 @@ function App() {
             window.gtag?.("event", "contact_whatsapp_click", {
               method: "featured_plan_button",
             });
+            window.gtag?.("event", "conversion_event_contact_4", {
+              source: "featured_plan_button",
+            });
             window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
           }}
         >
@@ -352,6 +356,9 @@ function App() {
         onClick={() => {
           window.gtag?.("event", "contact_whatsapp_click", {
             method: "whatsapp_float",
+          });
+          window.gtag?.("event", "conversion_event_contact_4", {
+            source: "whatsapp_float",
           });
         }}
       >

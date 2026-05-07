@@ -317,13 +317,6 @@ function App() {
           </p>
         </article>
         <article className="faq-item">
-          <h3>¿Trabajan en todo el pais?</h3>
-          <p>
-            Si, contamos con cobertura nacional y evaluamos cartilla segun tu
-            zona para que tengas acceso real a prestadores.
-          </p>
-        </article>
-        <article className="faq-item">
           <h3>¿Que requisitos de edad y situacion laboral aplican?</h3>
           <p>
             En esta propuesta aplican perfiles que trabajan en blanco y hasta 58

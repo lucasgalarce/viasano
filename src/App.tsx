@@ -28,8 +28,20 @@ function App() {
   const isOverAgeLimit = hasValidAge && parsedAge > 58;
   const isIneligible = isOverAgeLimit;
 
+  const trackGaEvent = (eventName: string, params?: Record<string, unknown>) => {
+    if (typeof window.gtag !== "function") {
+      console.warn("[FormDebug] gtag no disponible", { eventName, params });
+      return;
+    }
+
+    window.gtag("event", eventName, params);
+    console.log("[FormDebug] Evento GA enviado", { eventName, params });
+  };
+
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    trackGaEvent("form_submit_attempt", { method: "formsubmit" });
 
     if (isIneligible) {
       console.warn("[FormDebug] Submit bloqueado por elegibilidad", {
@@ -83,10 +95,11 @@ function App() {
       form.reset();
       setAge("");
       setSubmitStatus("success");
-      window.gtag?.("event", "generate_lead", { method: "formsubmit" });
+      trackGaEvent("generate_lead", { method: "formsubmit" });
       console.log("[FormDebug] Envio exitoso");
     } catch {
       console.error("[FormDebug] Error en envio");
+      trackGaEvent("form_submit_error", { method: "formsubmit" });
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

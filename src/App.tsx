@@ -1,6 +1,6 @@
 import viasanoLogoColorPng from "./assets/viasano_logo_color.png";
 import viasanoLogoPng from "./assets/viasano_logo.png";
-import saludBackgroundJpg from "./assets/salud.jpg";
+import heroObraSocialLeftPng from "./assets/hero-obra-social-left.png";
 import { useState } from "react";
 import type { FormEvent } from "react";
 
@@ -36,6 +36,11 @@ function App() {
 
     window.gtag("event", eventName, params);
     console.log("[FormDebug] Evento GA enviado", { eventName, params });
+  };
+
+  const trackWhatsappClick = (source: string) => {
+    trackGaEvent("contact_whatsapp_click", { method: source });
+    trackGaEvent("conversion_event_contact_4", { source });
   };
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -110,42 +115,62 @@ function App() {
 
   return (
     <main className="landing">
-      <div className="top-logo">
-        <img src={viasanoLogoColorPng} alt="ViaSano Salud" />
-      </div>
+      <header className="site-header" aria-label="Navegacion principal">
+        <a className="brand-link" href="#inicio" aria-label="ViaSano Salud">
+          <img src={viasanoLogoColorPng} alt="ViaSano Salud" />
+        </a>
+        <nav className="header-nav" aria-label="Secciones">
+          <a href="#beneficios">Beneficios</a>
+          <a href="#plan">Plan destacado</a>
+          <a href="#faq">Preguntas</a>
+        </nav>
+        <a
+          className="header-cta"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => trackWhatsappClick("header_cta")}
+        >
+          Cotizar gratis
+        </a>
+      </header>
 
-      <section className="hero-section">
+      <section className="hero-section" id="inicio">
         <img
           className="hero-background-image"
-          src={saludBackgroundJpg}
+          src={heroObraSocialLeftPng}
           alt=""
           aria-hidden="true"
         />
-        <p className="pill">Cobertura Nacional Certificada</p>
-        <h1>
-          Obra Social Sin Copagos: Cobertura Medica Completa Con Tus Aportes
-        </h1>
-        <p className="hero-subtitle">
-          Cambia tu cobertura de salud y accede a un plan medico integral{" "}
-          <strong>solo con tus aportes</strong>.
-        </p>
-        <p className="hero-warning">
-          ⚠️ Sin Bonos | Sin Copagos | Sin Sorpresas
-        </p>
-        <p className="hero-disclaimer">
-          NO SE TOMAN MONOTRIBUTISTAS NI TRABAJADORES DE CASAS PARTICULARES
-        </p>
-      </section>
-
-      <section className="form-and-benefits">
-        <article className="lead-form-card">
-          <h2>Cotiza Tu Plan De Salud En Minutos</h2>
-          <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
-          <p className="muted">
-            Completa el formulario y un asesor te contactara para ayudarte a
-            elegir tu cobertura medica ideal.
+        <div className="hero-content">
+          <p className="pill">Cobertura Nacional Certificada</p>
+          <h1>
+            Obra social sin copagos: cobertura medica completa con tus aportes
+          </h1>
+          <p className="hero-subtitle">
+            Cambia tu cobertura de salud y accede a un plan medico integral{" "}
+            <strong>solo con tus aportes</strong>.
           </p>
+          <div className="trust-row" aria-label="Puntos principales">
+            <span>Sin Bonos</span>
+            <span>Sin Copagos</span>
+            <span>Sin Sorpresas</span>
+          </div>
+          <p className="hero-disclaimer">
+            NO SE TOMAN MONOTRIBUTISTAS NI TRABAJADORES DE CASAS PARTICULARES
+          </p>
+        </div>
 
+        <article className="lead-form-card" id="cotizar">
+          <div className="form-card-header">
+            <p className="section-kicker">Cotizacion</p>
+            <h2>Cotiza tu plan de salud en minutos</h2>
+            <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
+            <p className="muted">
+              Completa el formulario y un asesor te contactara para ayudarte a
+              elegir tu cobertura medica ideal.
+            </p>
+          </div>
           <form
             className="lead-form"
             action={FORM_SUBMIT_URL}
@@ -229,7 +254,13 @@ function App() {
             </button>
           </form>
         </article>
+      </section>
 
+      <section className="form-and-benefits" id="beneficios">
+        <div className="section-heading">
+          <p className="section-kicker">Beneficios</p>
+          <h2>Cobertura clara para cuidar tu salud sin costos sorpresa.</h2>
+        </div>
         <aside className="benefits-grid">
           <article className="benefit-card">
             <h3>🏥 +50 Sanatorios</h3>
@@ -252,7 +283,7 @@ function App() {
         </aside>
       </section>
 
-      <section className="featured-plan">
+      <section className="featured-plan" id="plan">
         <p className="plan-badge">PLAN DESTACADO: 411 SUPERADOR</p>
         <h2>$0 COPAGOS</h2>
         <p className="muted">
@@ -268,12 +299,7 @@ function App() {
         <button
           type="button"
           onClick={() => {
-            window.gtag?.("event", "contact_whatsapp_click", {
-              method: "featured_plan_button",
-            });
-            window.gtag?.("event", "conversion_event_contact_4", {
-              source: "featured_plan_button",
-            });
+            trackWhatsappClick("featured_plan_button");
             window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
           }}
         >
@@ -281,38 +307,58 @@ function App() {
         </button>
       </section>
 
-      <section className="infrastructure">
-        <h2>Red Medica E Infraestructura De Alta Calidad</h2>
-        <p className="muted">
-          Contamos con centros de atencion modernos y profesionales para una
-          cobertura de salud confiable.
-        </p>
-      </section>
-
-      <section className="testimonials">
-        <h2>Opiniones Reales De Afiliados</h2>
-        <div className="testimonials-grid">
-          <article className="testimonial-card">
-            <p className="stars">★★★★★</p>
-            <p>
-              &quot;Me ayudaron a cambiarme rapido y sin vueltas. Hoy tengo mejor
-              cartilla medica y sigo usando mis aportes.&quot;
-            </p>
-            <p className="author">- Mariana G.</p>
+      <section className="process-section">
+        <div className="section-heading">
+          <p className="section-kicker">Como funciona</p>
+          <h2>De consulta a cobertura activa.</h2>
+        </div>
+        <div className="process-grid">
+          <article className="process-step">
+            <span>01</span>
+            <h3>Contanos tu situacion</h3>
+            <p>Trabajo, grupo familiar, zona y necesidades de salud.</p>
           </article>
-          <article className="testimonial-card">
-            <p className="stars">★★★★★</p>
+          <article className="process-step">
+            <span>02</span>
+            <h3>Comparamos planes</h3>
+            <p>Te mostramos alternativas concretas con prestaciones.</p>
+          </article>
+          <article className="process-step">
+            <span>03</span>
+            <h3>Elegis con respaldo</h3>
             <p>
-              &quot;La atencion fue clara desde el primer contacto. En pocos dias
-              ya tenia todo gestionado y sin costos de tramite.&quot;
+              Resolves dudas antes de avanzar, con asesoramiento personalizado.
             </p>
-            <p className="author">- Diego P.</p>
+          </article>
+          <article className="process-step">
+            <span>04</span>
+            <h3>Gestionamos el alta</h3>
+            <p>Acompanamos la documentacion y el alta del plan.</p>
           </article>
         </div>
       </section>
 
-      <section className="faq-section">
-        <h2>Preguntas Frecuentes</h2>
+      <section className="quote-band">
+        <div>
+          <p className="section-kicker">Confianza comercial</p>
+          <h2>La salud se vende mejor cuando se explica con honestidad.</h2>
+        </div>
+        <figure className="quote-card">
+          <p>
+            &quot;Nos ayudaron a entender que plan nos convenia, sin presion y con
+            informacion muy clara.&quot;
+          </p>
+          <figcaption>
+            <strong>Mariana R.</strong> Cliente plan familiar
+          </figcaption>
+        </figure>
+      </section>
+
+      <section className="faq-section" id="faq">
+        <div className="section-heading">
+          <p className="section-kicker">FAQ</p>
+          <h2>Preguntas Frecuentes</h2>
+        </div>
         <article className="faq-item">
           <h3>¿Puedo afiliarme solo con mis aportes?</h3>
           <p>
@@ -344,7 +390,9 @@ function App() {
 
       <footer className="footer">
         <img className="footer-logo" src={viasanoLogoPng} alt="Logo ViaSano" />
-        <p>© 2026 ViaSano Salud. Cobertura nacional certificada.</p>
+        <div>
+          <p>© 2026 ViaSano Salud. Cobertura nacional certificada.</p>
+        </div>
       </footer>
 
       <a
@@ -354,12 +402,7 @@ function App() {
         rel="noreferrer"
         aria-label="Contactar por WhatsApp"
         onClick={() => {
-          window.gtag?.("event", "contact_whatsapp_click", {
-            method: "whatsapp_float",
-          });
-          window.gtag?.("event", "conversion_event_contact_4", {
-            source: "whatsapp_float",
-          });
+          trackWhatsappClick("whatsapp_float");
         }}
       >
         <svg

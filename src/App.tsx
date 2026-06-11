@@ -131,7 +131,7 @@ function App() {
           rel="noreferrer"
           onClick={() => trackWhatsappClick("header_cta")}
         >
-          Cotizar gratis
+          Obtener beneficio
         </a>
       </header>
 
@@ -163,8 +163,8 @@ function App() {
 
         <article className="lead-form-card" id="cotizar">
           <div className="form-card-header">
-            <p className="section-kicker">Cotizacion</p>
-            <h2>Cotiza tu plan de salud en minutos</h2>
+            <p className="section-kicker">Asesoramiento</p>
+            <h2>Obtene tu plan de salud en minutos</h2>
             <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
             <p className="muted">
               Completa el formulario y un asesor te contactara para ayudarte a
@@ -250,7 +250,7 @@ function App() {
             <button type="submit" disabled={isSubmitting || isIneligible}>
               {isSubmitting
                 ? "ENVIANDO..."
-                : "SOLICITAR COTIZACION GRATIS SI NO SOS AFILIADO"}
+                : "QUIERO ACCEDER CON MIS APORTES"}
             </button>
           </form>
         </article>

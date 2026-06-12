@@ -40,7 +40,6 @@ function App() {
 
   const trackWhatsappClick = (source: string) => {
     trackGaEvent("contact_whatsapp_click", { method: source });
-    trackGaEvent("conversion_event_contact_4", { source });
   };
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -101,7 +100,6 @@ function App() {
       setAge("");
       setSubmitStatus("success");
       trackGaEvent("generate_lead", { method: "formsubmit" });
-      trackGaEvent("conversion_event_contact_4", { source: "form_submit" });
       console.log("[FormDebug] Envio exitoso");
     } catch {
       console.error("[FormDebug] Error en envio");

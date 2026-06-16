@@ -28,7 +28,10 @@ function App() {
   const isOverAgeLimit = hasValidAge && parsedAge > 58;
   const isIneligible = isOverAgeLimit;
 
-  const trackGaEvent = (eventName: string, params?: Record<string, unknown>) => {
+  const trackGaEvent = (
+    eventName: string,
+    params?: Record<string, unknown>,
+  ) => {
     if (typeof window.gtag !== "function") {
       console.warn("[FormDebug] gtag no disponible", { eventName, params });
       return;
@@ -198,19 +201,27 @@ function App() {
               required
             />
 
-            <input
-              id="whatsapp"
-              name="whatsapp"
-              type="tel"
-              inputMode="numeric"
-              pattern="[0-9]+"
-              placeholder="11XXXXXXXX"
-              required
-              onInput={(event) => {
-                const input = event.currentTarget;
-                input.value = input.value.replace(/\D/g, "");
-              }}
-            />
+            <div className="field-with-hint">
+              <input
+                id="whatsapp"
+                name="whatsapp"
+                type="tel"
+                inputMode="numeric"
+                minLength={10}
+                maxLength={13}
+                pattern="[0-9]{10,13}"
+                placeholder="Ej: 1124256487"
+                aria-describedby="whatsapp-help"
+                required
+                onInput={(event) => {
+                  const input = event.currentTarget;
+                  input.value = input.value.replace(/\D/g, "").slice(0, 13);
+                }}
+              />
+              <p className="input-hint" id="whatsapp-help">
+                Codigo de area + numero, sin 0, 15, espacios ni guiones.
+              </p>
+            </div>
             <input
               id="email"
               name="email"
@@ -246,9 +257,7 @@ function App() {
             ) : null}
 
             <button type="submit" disabled={isSubmitting || isIneligible}>
-              {isSubmitting
-                ? "ENVIANDO..."
-                : "QUIERO ACCEDER CON MIS APORTES"}
+              {isSubmitting ? "ENVIANDO..." : "QUIERO ACCEDER CON MIS APORTES"}
             </button>
           </form>
         </article>
@@ -343,8 +352,8 @@ function App() {
         </div>
         <figure className="quote-card">
           <p>
-            &quot;Nos ayudaron a entender que plan nos convenia, sin presion y con
-            informacion muy clara.&quot;
+            &quot;Nos ayudaron a entender que plan nos convenia, sin presion y
+            con informacion muy clara.&quot;
           </p>
           <figcaption>
             <strong>Mariana R.</strong> Cliente plan familiar

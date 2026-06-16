@@ -386,6 +386,40 @@ p {
   box-shadow: 0 0 0 4px rgba(122, 21, 57, 0.12);
 }
 
+.field-with-hint {
+  position: relative;
+}
+
+.input-hint {
+  position: absolute;
+  z-index: 3;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: calc(100% + 0.45rem);
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  color: #4b5563;
+  background: #ffffff;
+  border: 1px solid rgba(122, 21, 57, 0.16);
+  border-radius: 0.5rem;
+  box-shadow: 0 14px 34px rgba(77, 12, 36, 0.14);
+  font-size: 0.8rem;
+  font-weight: 750;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.25rem);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.field-with-hint:focus-within .input-hint,
+.field-with-hint:hover .input-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .form-error-message,
 .form-success-message {
   margin: 0;

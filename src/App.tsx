@@ -390,7 +390,7 @@ function App() {
           <h3>¿Que requisitos de edad y situacion laboral aplican?</h3>
           <p>
             En esta propuesta aplican perfiles que trabajan en blanco y hasta 58
-            anos de edad.
+            años de edad.
           </p>
         </article>
       </section>

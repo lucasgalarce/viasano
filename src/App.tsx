@@ -11,7 +11,7 @@ declare global {
 }
 
 const WHATSAPP_DEFAULT_MESSAGE =
-  "Hola, quiero consultar por ViaSano, vengo de la pagina web";
+  "Hola, quiero consultar por ViaSano, vengo de la página web";
 const WHATSAPP_URL = `https://wa.me/5491151229168?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
 const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/Joaquin.arrabasa@gmail.com";
 // const FORM_SUBMIT_URL = "https://formsubmit.co/ajax/ratzot.consta@gmail.com";
@@ -68,7 +68,7 @@ function App() {
     setSubmitStatus("idle");
 
     try {
-      console.log("[FormDebug] Iniciando envio", {
+      console.log("[FormDebug] Iniciando envío", {
         endpoint: FORM_SUBMIT_URL,
         payloadPreview,
       });
@@ -103,20 +103,20 @@ function App() {
       setAge("");
       setSubmitStatus("success");
       trackGaEvent("generate_lead", { method: "formsubmit" });
-      console.log("[FormDebug] Envio exitoso");
+      console.log("[FormDebug] Envío exitoso");
     } catch {
-      console.error("[FormDebug] Error en envio");
+      console.error("[FormDebug] Error en envío");
       trackGaEvent("form_submit_error", { method: "formsubmit" });
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      console.log("[FormDebug] Fin de submit");
+      console.log("[FormDebug] Fin del envío");
     }
   };
 
   return (
     <main className="landing">
-      <header className="site-header" aria-label="Navegacion principal">
+      <header className="site-header" aria-label="Navegación principal">
         <a className="brand-link" href="#inicio" aria-label="ViaSano Salud">
           <img src={viasanoLogoColorPng} alt="ViaSano Salud" />
         </a>
@@ -146,10 +146,10 @@ function App() {
         <div className="hero-content">
           <p className="pill">Cobertura Nacional Certificada</p>
           <h1>
-            Obra social sin copagos: cobertura medica completa con tus aportes
+            Obra social sin copagos: cobertura médica completa con tus aportes
           </h1>
           <p className="hero-subtitle">
-            Cambia tu cobertura de salud y accede a un plan medico integral{" "}
+            Cambiá tu cobertura de salud y accedé a un plan médico integral{" "}
             <strong>solo con tus aportes</strong>.
           </p>
           <div className="trust-row" aria-label="Puntos principales">
@@ -165,11 +165,11 @@ function App() {
         <article className="lead-form-card" id="cotizar">
           <div className="form-card-header">
             <p className="section-kicker">Asesoramiento</p>
-            <h2>Obtene tu plan de salud en minutos</h2>
+            <h2>Obtené tu plan de salud en minutos</h2>
             <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
             <p className="muted">
-              Completa el formulario y un asesor te contactara para ayudarte a
-              elegir tu cobertura medica ideal.
+              Completá el formulario y un asesor te contactará para ayudarte a
+              elegir tu cobertura médica ideal.
             </p>
           </div>
           <form
@@ -183,7 +183,7 @@ function App() {
             <input
               type="hidden"
               name="_autoresponse"
-              value="Recibimos tu consulta. Un asesor de ViaSano te contactara en breve."
+              value="Recibimos tu consulta. Un asesor de ViaSano te contactará en breve."
             />
             <input
               type="text"
@@ -219,7 +219,7 @@ function App() {
                 }}
               />
               <p className="input-hint" id="whatsapp-help">
-                Codigo de area + numero, sin 0, 15, espacios ni guiones.
+                Código de área + número, sin 0, 15, espacios ni guiones.
               </p>
             </div>
             <input
@@ -241,7 +241,7 @@ function App() {
             />
             {isIneligible ? (
               <p className="form-error-message" role="alert">
-                No puedes enviar el formulario porque no cumples con los
+                No podés enviar el formulario porque no cumplís con los
                 requisitos.
               </p>
             ) : null}
@@ -252,7 +252,7 @@ function App() {
             ) : null}
             {submitStatus === "error" ? (
               <p className="form-error-message" role="alert">
-                Ocurrio un error al enviar el formulario. Intenta nuevamente.
+                Ocurrió un error al enviar el formulario. Intentá nuevamente.
               </p>
             ) : null}
 
@@ -272,20 +272,20 @@ function App() {
           <article className="benefit-card">
             <h3>🏥 +50 Sanatorios</h3>
             <p>
-              Accede a una cartilla medica de primer nivel con cobertura en AMBA
-              y todo el pais.
+              Accedé a una cartilla médica de primer nivel con cobertura en AMBA
+              y todo el país.
             </p>
           </article>
           <article className="benefit-card">
             <h3>🚑 Emergencias 24hs</h3>
             <p>
-              Servicio de emergencias y atencion medica domiciliaria durante
-              todo el ano.
+              Servicio de emergencias y atención médica domiciliaria durante
+              todo el año.
             </p>
           </article>
           <article className="benefit-card">
-            <h3>🦷 Odontologia</h3>
-            <p>Cobertura odontologica para vos y tu grupo familiar.</p>
+            <h3>🦷 Odontología</h3>
+            <p>Cobertura odontológica para vos y tu grupo familiar.</p>
           </article>
         </aside>
       </section>
@@ -294,13 +294,13 @@ function App() {
         <p className="plan-badge">PLAN DESTACADO: 411 SUPERADOR</p>
         <h2>$0 COPAGOS</h2>
         <p className="muted">
-          Plan medico para trabajadores en relacion de dependencia con recibo de
+          Plan médico para trabajadores en relación de dependencia con recibo de
           sueldo.
         </p>
         <ul>
-          <li>Internacion programada al 100%</li>
-          <li>17 Policonsultorios propios de atencion inmediata</li>
-          <li>Demanda espontanea pediatrica y clinica</li>
+          <li>Internación programada al 100%</li>
+          <li>17 Policonsultorios propios de atención inmediata</li>
+          <li>Demanda espontánea pediátrica y clínica</li>
           <li>Descuentos en farmacias de toda la red</li>
         </ul>
         <button
@@ -316,13 +316,13 @@ function App() {
 
       <section className="process-section">
         <div className="section-heading">
-          <p className="section-kicker">Como funciona</p>
+          <p className="section-kicker">Cómo funciona</p>
           <h2>De consulta a cobertura activa.</h2>
         </div>
         <div className="process-grid">
           <article className="process-step">
             <span>01</span>
-            <h3>Contanos tu situacion</h3>
+            <h3>Contanos tu situación</h3>
             <p>Trabajo, grupo familiar, zona y necesidades de salud.</p>
           </article>
           <article className="process-step">
@@ -332,15 +332,15 @@ function App() {
           </article>
           <article className="process-step">
             <span>03</span>
-            <h3>Elegis con respaldo</h3>
+            <h3>Elegís con respaldo</h3>
             <p>
-              Resolves dudas antes de avanzar, con asesoramiento personalizado.
+              Resolvés dudas antes de avanzar, con asesoramiento personalizado.
             </p>
           </article>
           <article className="process-step">
             <span>04</span>
             <h3>Gestionamos el alta</h3>
-            <p>Acompanamos la documentacion y el alta del plan.</p>
+            <p>Acompañamos la documentación y el alta del plan.</p>
           </article>
         </div>
       </section>
@@ -352,8 +352,8 @@ function App() {
         </div>
         <figure className="quote-card">
           <p>
-            &quot;Nos ayudaron a entender que plan nos convenia, sin presion y
-            con informacion muy clara.&quot;
+            &quot;Nos ayudaron a entender qué plan nos convenía, sin presión y
+            con información muy clara.&quot;
           </p>
           <figcaption>
             <strong>Mariana R.</strong> Cliente plan familiar
@@ -364,30 +364,30 @@ function App() {
       <section className="faq-section" id="faq">
         <div className="section-heading">
           <p className="section-kicker">FAQ</p>
-          <h2>Preguntas Frecuentes</h2>
+          <h2>Preguntas frecuentes</h2>
         </div>
         <article className="faq-item">
           <h3>¿Puedo afiliarme solo con mis aportes?</h3>
           <p>
-            Si, la cobertura es 100% con tu recibo de sueldo sin abonar ningún
+            Sí, la cobertura es 100% con tu recibo de sueldo sin abonar ningún
             tipo de diferencial
           </p>
         </article>
         <article className="faq-item">
-          <h3>¿En cuanto tiempo me contactan?</h3>
+          <h3>¿En cuánto tiempo me contactan?</h3>
           <p>
             Luego de enviar el formulario, un asesor se contacta normalmente en
             pocos minutos.
           </p>
         </article>
         <article className="faq-item">
-          <h3>¿El tramite tiene costo?</h3>
+          <h3>¿El trámite tiene costo?</h3>
           <p>
-            No. El tramite de afiliacion y el asesoramiento son 100% gratuitos.
+            No. El trámite de afiliación y el asesoramiento son 100% gratuitos.
           </p>
         </article>
         <article className="faq-item">
-          <h3>¿Que requisitos de edad y situacion laboral aplican?</h3>
+          <h3>¿Qué requisitos de edad y situación laboral aplican?</h3>
           <p>
             En esta propuesta aplican perfiles que trabajan en blanco y hasta 58
             años de edad.

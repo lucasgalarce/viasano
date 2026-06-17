@@ -1,5 +1,6 @@
 import viasanoLogoColorPng from "./assets/viasano_logo_color.png";
 import viasanoLogoPng from "./assets/viasano_logo.png";
+import heroObraSocialPng from "./assets/hero-obra-social.png";
 import heroObraSocialLeftPng from "./assets/hero-obra-social-left.png";
 import { useState } from "react";
 import type { FormEvent } from "react";
@@ -138,8 +139,14 @@ function App() {
 
       <section className="hero-section" id="inicio">
         <img
-          className="hero-background-image"
+          className="hero-background-image hero-background-image--desktop"
           src={heroObraSocialLeftPng}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="hero-background-image hero-background-image--mobile"
+          src={heroObraSocialPng}
           alt=""
           aria-hidden="true"
         />
@@ -164,7 +171,9 @@ function App() {
 
         <article className="lead-form-card" id="cotizar">
           <div className="form-card-header">
-            <p className="section-kicker">Asesoramiento</p>
+            <p className="section-kicker section-kicker--advice">
+              Asesoramiento
+            </p>
             <h2>Obtené tu plan de salud en minutos</h2>
             <p className="form-highlight">SOLO SI NO SOS AFILIADO</p>
             <p className="muted">
@@ -265,7 +274,9 @@ function App() {
 
       <section className="form-and-benefits" id="beneficios">
         <div className="section-heading">
-          <p className="section-kicker">Beneficios</p>
+          <p className="section-kicker section-kicker--benefits">
+            Beneficios
+          </p>
           <h2>Cobertura clara para cuidar tu salud sin costos sorpresa.</h2>
         </div>
         <aside className="benefits-grid">
@@ -291,7 +302,9 @@ function App() {
       </section>
 
       <section className="featured-plan" id="plan">
-        <p className="plan-badge">PLAN DESTACADO: 411 SUPERADOR</p>
+        <p className="plan-badge plan-badge--featured">
+          PLAN DESTACADO: 411 SUPERADOR
+        </p>
         <h2>$0 COPAGOS</h2>
         <p className="muted">
           Plan médico para trabajadores en relación de dependencia con recibo de
@@ -316,7 +329,9 @@ function App() {
 
       <section className="process-section">
         <div className="section-heading">
-          <p className="section-kicker">Cómo funciona</p>
+          <p className="section-kicker section-kicker--process">
+            Cómo funciona
+          </p>
           <h2>De consulta a cobertura activa.</h2>
         </div>
         <div className="process-grid">
@@ -347,7 +362,9 @@ function App() {
 
       <section className="quote-band">
         <div>
-          <p className="section-kicker">Confianza comercial</p>
+          <p className="section-kicker section-kicker--trust">
+            Confianza comercial
+          </p>
           <h2>La salud se vende mejor cuando se explica con honestidad.</h2>
         </div>
         <figure className="quote-card">
@@ -363,7 +380,7 @@ function App() {
 
       <section className="faq-section" id="faq">
         <div className="section-heading">
-          <p className="section-kicker">FAQ</p>
+          <p className="section-kicker section-kicker--faq">FAQ</p>
           <h2>Preguntas frecuentes</h2>
         </div>
         <article className="faq-item">
